@@ -29,6 +29,13 @@
 - 막히면 힌트 요청 후 진행
 - 정답 전체 코드는 사용자 요청 시에만 제공
 
+## 레벨 운영 규칙
+- 시작 레벨: Level 1
+- `/next` 시 현재 레벨 내에서 다양한 카테고리(hash, sort, stack, exhaustive_search 등)를 순환하며 출제
+- 현재 레벨에서 카테고리별로 충분히 풀었다고 판단되면 사용자에게 레벨업 여부를 질문
+- 사용자가 동의하면 다음 레벨로 전환 (Level 1 → Level 2 → Level 3)
+- 레벨 전환 시 메모리에 기록
+
 ## 기록 규칙
 - 학습 기록은 `STUDY_TEMPLATE.md` 사용
 - 최소 기록 항목:
@@ -42,7 +49,9 @@
 사용자가 "/next"라고 입력하면 다음을 수행한다:
 1. `src/main/java/kr/co/allra/programmers/` 하위를 탐색하여 기존 문제 파일 목록 확인
 2. 같은 카테고리 내에서 중복되지 않는 다음 문제를 선택
-3. 문제 생성 규칙에 따라 Java 파일을 자동 생성:
+3. 현재 레벨의 다양한 카테고리를 순환하며 출제 (hash → sort → stack → exhaustive_search → ...)
+4. 현재 레벨의 카테고리를 충분히 풀었으면 사용자에게 레벨업 여부를 질문
+5. 문제 생성 규칙에 따라 Java 파일을 자동 생성:
    - 클래스명: `P{문제번호}{클래스명}`
    - 상단 Javadoc: URL, 문제 설명, 제한사항, 입출력 예/설명 전체 포함
    - `solution()`: `throw new UnsupportedOperationException("TODO: 직접 구현")`
